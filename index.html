@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国文旅网 - APP下载</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo svg { width: 40px; height: 40px; fill: #FFFFFF; }
+        h1 { color: #0F172A; font-size: 24px; margin-bottom: 8px; }
+        .subtitle { color: #64748B; font-size: 14px; margin-bottom: 30px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            outline: none;
+            text-align: center;
+        }
+        .input-group input:focus { border-color: #0F172A; }
+        .verify-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #0F172A;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        .error-msg { color: #EF4444; font-size: 14px; margin-top: 12px; }
+        .success-msg { color: #10B981; font-size: 14px; margin-top: 12px; }
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 16px 32px;
+            background: #10B981;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .app-info {
+            margin-top: 20px;
+            padding: 16px;
+            background: #F1F5F9;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .app-info h3 { color: #0F172A; font-size: 14px; margin-bottom: 8px; }
+        .app-info p { color: #64748B; font-size: 12px; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="verifySection">
+            <div class="logo">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
+            </div>
+            <h1>中国文旅网</h1>
+            <p class="subtitle">请输入下载秘钥</p>
+            <div class="input-group">
+                <input type="text" id="secretKey" placeholder="请输入秘钥">
+            </div>
+            <button class="verify-btn" onclick="verify()">验证</button>
+            <div id="result"></div>
+        </div>
+
+        <div id="downloadSection" style="display:none;">
+            <div class="logo" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            </div>
+            <h1>验证成功</h1>
+            <p class="subtitle">点击下方按钮下载中国文旅网APP</p>
+            
+            <a href="#" class="download-btn" id="downloadBtn" onclick="downloadApk(); return false;">
+                下载 中国文旅网 APK
+            </a>
+            
+            <div class="app-info">
+                <h3>应用信息</h3>
+                <p>应用名称：中国文旅网</p>
+                <p>版本：1.0.0</p>
+                <p>大小：约 50 MB</p>
+                <p>系统：Android 6.0+</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var VALID_KEYS = [
+            'a72846c2a80fe2e02e052e21c873ff22',
+            '3d9efa84182924e53d5f8080cfd31965',
+            'a4cab0f6dad6d53be06fb3535c765dbc',
+            '95f600927b99c6fdfb1b02ad0013930c',
+            '7f96a7ffd8693270195265e1090ae430'
+        ];
+        
+        // 直接APK下载链接
+        var APK_URL = 'https://expo.dev/artifacts/eas/80eb7f89-4005-4483-a6c9-50caf8b80354.apk';
+        
+        function verify() {
+            var input = document.getElementById('secretKey');
+            var result = document.getElementById('result');
+            var key = input.value.trim().toLowerCase();
+            
+            if (!key) {
+                result.innerHTML = '<p class="error-msg">请输入秘钥</p>';
+                return;
+            }
+            
+            var found = false;
+            for (var i = 0; i < VALID_KEYS.length; i++) {
+                if (VALID_KEYS[i] === key) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (found) {
+                document.getElementById('verifySection').style.display = 'none';
+                document.getElementById('downloadSection').style.display = 'block';
+            } else {
+                result.innerHTML = '<p class="error-msg">秘钥无效</p>';
+            }
+        }
+        
+        function downloadApk() {
+            // 创建隐藏的iframe来触发下载
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = APK_URL;
+            document.body.appendChild(iframe);
+            
+            // 同时尝试使用window.location
+            setTimeout(function() {
+                window.location.href = APK_URL;
+            }, 100);
+        }
+    </script>
+</body>
+</html>
