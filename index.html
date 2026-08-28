@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中国文旅网 - APP下载</title>
+    <title>cash - APP下载</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -90,8 +90,15 @@
             <div class="logo">
                 <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
             </div>
-            <h1>中国文旅网</h1>
-            <p class="subtitle">请输入下载秘钥</p>
+            <h1>cash</h1>
+            <p class="subtitle">扫描二维码或输入秘钥下载APP</p>
+            
+            <div style="margin: 20px auto; padding: 15px; background: #F8FAFC; border-radius: 16px; display: inline-block;">
+                <img src="qr.png" alt="二维码" style="width: 200px; height: 200px; display: block;">
+            </div>
+            
+            <p style="color: #64748B; font-size: 12px; margin-bottom: 20px;">或手动输入秘钥</p>
+            
             <div class="input-group">
                 <input type="text" id="secretKey" placeholder="请输入秘钥">
             </div>
@@ -104,15 +111,15 @@
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
             </div>
             <h1>验证成功</h1>
-            <p class="subtitle">点击下方按钮下载中国文旅网APP</p>
+            <p class="subtitle">点击下方按钮下载cash APP</p>
             
             <a href="#" class="download-btn" id="downloadBtn" onclick="downloadApk(); return false;">
-                下载 中国文旅网 APK
+                下载 cash APK
             </a>
             
             <div class="app-info">
                 <h3>应用信息</h3>
-                <p>应用名称：中国文旅网</p>
+                <p>应用名称：cash</p>
                 <p>版本：1.0.0</p>
                 <p>大小：约 50 MB</p>
                 <p>系统：Android 6.0+</p>
@@ -130,7 +137,7 @@
         ];
         
         // 直接APK下载链接
-        var APK_URL = 'https://expo.dev/artifacts/eas/80eb7f89-4005-4483-a6c9-50caf8b80354.apk';
+        var APK_URL = 'https://expo.dev/artifacts/eas/g9xtDW7OWg-T-Ngzas4E-wSvltbjEcDAHf1KyMmKvhU.apk';
         
         function verify() {
             var input = document.getElementById('secretKey');

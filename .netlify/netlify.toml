@@ -8,7 +8,6 @@ redirects = []
 [build]
 publish = "/workspace/projects/verify-page"
 publishOrigin = "default"
-base = "/workspace/projects/verify-page"
 
 [build.environment]
 
